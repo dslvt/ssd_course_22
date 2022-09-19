@@ -36,7 +36,7 @@ def funx(n=2, m=5):
 
 def run_task_1():
     func()
-    funx()
+    funx(10, 15)
     func()
-    funx()
+    funx(20)
     func()
