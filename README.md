@@ -4,6 +4,10 @@ A repo for running task from assignment 1.
 
 ## Setup
 
+## Run
+
+## Advanced options
+
 ## Task 1
 
 ## Task 2
