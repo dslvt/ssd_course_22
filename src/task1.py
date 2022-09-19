@@ -5,12 +5,13 @@ import time
 def decorator_1(func):
     data = {'count': 0}
 
-    def wrapper(*args, **kwargs):        
+    def wrapper(*args, **kwargs):
         start_time = time.perf_counter()
-        func(*args, **kwargs)
+        output = func(*args, **kwargs)
         total_time = time.perf_counter() - start_time
         data['count'] += 1
         print(f'func call {data["count"]} executed in {total_time} sec')
+        return output
     return wrapper
 
 
