@@ -8,9 +8,9 @@ arg_parser = argparse.ArgumentParser(description='Assignemnt 1. SSD')
 arg_parser.add_argument('-t1', '--run_task_1',
                         action=argparse.BooleanOptionalAction, default=False)
 arg_parser.add_argument('-t2', '--run_task_2',
-                        action=argparse.BooleanOptionalAction, default=True)
-arg_parser.add_argument('-t3', '--run_task_3',
                         action=argparse.BooleanOptionalAction, default=False)
+arg_parser.add_argument('-t3', '--run_task_3',
+                        action=argparse.BooleanOptionalAction, default=True)
 arg_parser.add_argument('-t4', '--run_task_4',
                         action=argparse.BooleanOptionalAction, default=False)
 

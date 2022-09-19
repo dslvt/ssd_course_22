@@ -1,0 +1,22 @@
+Name: 	funh
+Type: 	<class 'function'>
+Sign: 	(bar1, bar2='')
+Args: 	positional (None,)
+		keyworded {'bar2': ''}
+Doc: 	This function does something useful
+	    :param bar1: description
+	    :param bar2: description
+	    
+Source: @decorator_3
+		def funh(bar1, bar2=""):
+		    """
+		    This function does something useful
+		    :param bar1: description
+		    :param bar2: description
+		    """
+		    print("some\nmultiline\noutput")
+		
+Output: some
+		multiline
+		output
+		

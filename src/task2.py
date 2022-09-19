@@ -2,28 +2,25 @@ import time
 import inspect
 from contextlib import redirect_stdout
 import io
-
-
-def format_output(text):
-    return text.replace('\n', '\n\t')
+from utils import format_output
 
 
 def decorator_2(func):
     count_data = {'count': 0}
 
-    def wrapper(*args, **kwargs):
+    def wrapper(*args, **kwds):
         count_data['count'] += 1
         data = {'Name': f'\t{func.__name__}',
                 'Type': f'\t{type(func)}',
                 'Sign': f'\t{inspect.signature(func)}',
-                'Args': f'\tpositional {args}\n\tkeyworded {kwargs}',
+                'Args': f'\tpositional {args}\n\tkeyworded {kwds}',
                 'Doc': f'\t{func.__doc__}',
                 'Source': inspect.getsource(func)}
 
         with redirect_stdout(io.StringIO()) as f:
 
             start_time = time.perf_counter()
-            func(*args, **kwargs)
+            func(*args, **kwds)
             total_time = time.perf_counter() - start_time
 
         output = f.getvalue()
