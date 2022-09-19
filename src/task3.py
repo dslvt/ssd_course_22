@@ -1,8 +1,9 @@
 import inspect
-from datetime import datetime
+import io
 import time
 from contextlib import redirect_stdout
-import io
+from datetime import datetime
+
 from utils import format_output
 
 

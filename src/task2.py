@@ -1,7 +1,8 @@
-import time
 import inspect
-from contextlib import redirect_stdout
 import io
+import time
+from contextlib import redirect_stdout
+
 from utils import format_output
 
 
