@@ -28,7 +28,5 @@ def funh(bar1, bar2=""):
     print("some\nmultiline\noutput")
 
 
-def quadratic_equation_solver(x): return print(x)
-
-
-def pascal_triangle_printer(x): return print(x)
+quadratic_equation_solver = lambda x: print(x)
+pascal_triangle_printer = lambda x: print(x)

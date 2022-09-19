@@ -3,3 +3,7 @@ def decorator_2(func):
         print('Task 2')
         func()
     return wrapper
+
+
+def run_task_2():
+    pass
