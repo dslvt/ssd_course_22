@@ -4,7 +4,7 @@ import time
 from contextlib import redirect_stdout
 from datetime import datetime
 
-from utils import format_output
+from utils import format_output, print_header
 
 
 class decorator_4:
@@ -64,4 +64,5 @@ def funh(bar1, bar2=""):
 
 
 def run_task_4():
+    print_header(4)
     funh(None, bar2="")

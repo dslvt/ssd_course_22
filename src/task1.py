@@ -1,5 +1,6 @@
 import random
 import time
+from utils import print_header
 
 
 def decorator_1(func):
@@ -36,6 +37,8 @@ def funx(n=2, m=5):
 
 
 def run_task_1():
+    print_header(1)
+
     func()
     funx(10, 15)
     func()

@@ -3,7 +3,7 @@ import io
 import time
 from contextlib import redirect_stdout
 
-from utils import format_output
+from utils import format_output, print_header
 
 
 def decorator_2(func):
@@ -52,4 +52,6 @@ def funh(bar1, bar2=""):
 
 
 def run_task_2():
+    print_header(2)
+
     funh(None, bar2="")
