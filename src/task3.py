@@ -4,7 +4,11 @@ import time
 from contextlib import redirect_stdout
 from datetime import datetime
 
-from utils import format_output, print_header
+import pandas as pd
+
+from utils import format_output, print_header, time_decorator
+
+exec_times = []
 
 
 class decorator_3:
@@ -17,6 +21,7 @@ class decorator_3:
         self.args = None
         self.doc = func.__doc__
         self.source = inspect.getsource(func)
+        self.time_output = None
 
     def __call__(self, *args, **kwds):
         self.count += 1
@@ -25,11 +30,12 @@ class decorator_3:
             self.func(*args, **kwds)
             total_time = time.perf_counter() - start_time
 
+        self.time_output = f'func call {self.count} executed in {total_time} sec'
         self.output = f.getvalue()
         self.args = (args, kwds)
 
-        print(f'func call {self.count} executed in {total_time} sec')
         self.dump_output()
+        return self.output
 
     def dump_output(self):
         data = {'Name': f'\t{self.name}',
@@ -40,21 +46,49 @@ class decorator_3:
                 'Source': format_output(self.source, 2),
                 'Output': format_output(self.output, 2)}
 
-        file_name = f'output/{datetime.now()}.txt'
+        file_name = f'output/t3 {self.name} {datetime.now()}.txt'
         with open(file_name, 'x') as f:
+            f.write(f'{self.time_output}\n')
             for k, v in data.items():
                 f.write(f'{k}: {v}\n')
 
 
-@decorator_3
-def funh(bar1, bar2=""):
-    """
-    This function does something useful
-    :param bar1: description
-    :param bar2: description
-    """
-    print("some\nmultiline\noutput")
+def funt_builder(sec):
+    def funt(bar1, bar2=10):
+        """
+        This function does something useful
+        :param bar1: description
+        :param bar2: description
+        """
+        time.sleep(sec)
+        print("some\nmultiline\noutput")
+
+    funt.__name__ = f'funt_{int(sec * 1000)}'
+    funt = time_decorator(decorator_3(funt))
+    funt.__name__ = f'funt_{int(sec * 1000)}'
+    return funt
 
 
 def run_task_3():
     print_header(3)
+
+    exec_times = []
+    functions = [funt_builder(1),
+                 funt_builder(0.5),
+                 funt_builder(0.1),
+                 funt_builder(0.25)]
+
+    for fn in functions:
+        _, sec = fn(10)
+        exec_times.append((fn.__name__, sec))
+
+    exec_times_df = pd.DataFrame(
+        exec_times, columns=['PROGRAM', 'TIME ELAPSED'])
+    exec_times_df = exec_times_df.sort_values(
+        by=['TIME ELAPSED'], ascending=True)
+    exec_times_df['RANK'] = list(range(1, len(functions) + 1))
+    columns_titles = ['PROGRAM', 'RANK', 'TIME ELAPSED']
+    exec_times_df = exec_times_df.reindex(columns=columns_titles)
+    exec_times_df.reset_index(inplace=True)
+
+    print(exec_times_df)

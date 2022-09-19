@@ -1,0 +1,23 @@
+func call 1 executed in 1.0050787910004146 sec
+Name: 	funt_1000
+Type: 	<class 'function'>
+Sign: 	(bar1, bar2=10)
+Args: 	positional (10,)
+		keyworded {}
+Doc: 	This function does something useful
+	        :param bar1: description
+	        :param bar2: description
+	        
+Source:     def funt(bar1, bar2=10):
+		        """
+		        This function does something useful
+		        :param bar1: description
+		        :param bar2: description
+		        """
+		        time.sleep(sec)
+		        print("some\nmultiline\noutput")
+		
+Output: some
+		multiline
+		output
+		

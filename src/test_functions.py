@@ -1,4 +1,5 @@
 import random
+from cmath import sqrt
 
 
 def func():
@@ -28,5 +29,9 @@ def funh(bar1, bar2=""):
     print("some\nmultiline\noutput")
 
 
-quadratic_equation_solver = lambda x: print(x)
-pascal_triangle_printer = lambda x: print(x)
+quadratic_equation_solver = lambda a, b, c: (
+    (-b + sqrt((b * b) - (4 * a * c))) / (2 * a), (-b - sqrt((b * b) - (4 * a * c))) / (2 * a))
+
+# took from https://stackoverflow.com/questions/65431561/pascal-tringle-using-lambda-without-variables-or-recursion
+pascal_triangle_printer = lambda x: [
+    (lambda s: [s] + [s := s * (r - t) // (t + 1) for t in range(r)])(1) for r in range(x)]
